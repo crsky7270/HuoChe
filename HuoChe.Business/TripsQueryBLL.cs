@@ -11,7 +11,7 @@ namespace HuoChe.Business
     public class TripsQueryBLL
     {
         /// <summary>
-        /// 根据车次查询
+        /// 根据车次查询ce
         /// </summary>
         /// <param name="trainNumber">车次号</param>
         /// <returns></returns>
