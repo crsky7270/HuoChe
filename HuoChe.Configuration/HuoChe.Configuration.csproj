@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E740A8A2-BDBE-407E-8BBE-8699B964F30B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HuoChe.Configuration</RootNamespace>
+    <AssemblyName>HuoChe.Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZhangTuo.Caching">
+      <HintPath>..\packages\ZhangTuo.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="ZhangTuo.IoC">
+      <HintPath>..\packages\ZhangTuo.IoC.dll</HintPath>
+    </Reference>
+    <Reference Include="ZhangTuo.Logger">
+      <HintPath>..\packages\ZhangTuo.Logger.dll</HintPath>
+    </Reference>
+    <Reference Include="ZhangTuo.Utility">
+      <HintPath>..\packages\ZhangTuo.Utility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BootStarp\Bootstrapper.cs" />
+    <Compile Include="BootStarp\BusinessRegister.cs" />
+    <Compile Include="BootStarp\DataAccessRegister.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HuoChe.Business\HuoChe.Business.csproj">
+      <Project>{e0a79d93-b989-4025-a744-bf4b50071177}</Project>
+      <Name>HuoChe.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HuoChe.DataAccess\HuoChe.DataAccess.csproj">
+      <Project>{f44ba17c-c26b-464a-9861-34cc5ab0ba36}</Project>
+      <Name>HuoChe.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HuoChe.IBusiness\HuoChe.IBusiness.csproj">
+      <Project>{a3302667-de20-488e-8dd5-ccba028465e7}</Project>
+      <Name>HuoChe.IBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HuoChe.IDataAccess\HuoChe.IDataAccess.csproj">
+      <Project>{854d2ee0-5a57-4058-a077-6af05dc22598}</Project>
+      <Name>HuoChe.IDataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

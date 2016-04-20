@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "南昌西站候车室查询";
+}
+<style>
+    /*.seachbar {
+        height: 70px;
+    }*/
+
+    body {
+        padding-top: 50px;
+    }
+
+
+    .seachbar .container-fluid {
+        /*height: 70px;*/
+        padding-top: 7.5px;
+    }
+
+        .seachbar .container-fluid span {
+            border: none;
+            background: rgb(248,248,248);
+        }
+
+    img {
+        width: 100%;
+    }
+
+    .num {
+        line-height: 40px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .noresult, .result_null {
+        display: none;
+    }
+</style>
+<div class="container body-content">
+
+    <div class="navbar navbar-default navbar-fixed-top seachbar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">请输入车次</span>
+                        <input type="text" class="form-control" placeholder="请输入车次..." id="key" style="max-width:100%;">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="search()">查询</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+        </div>
+    </div>
+    <div class="tip">
+        <p></p>
+        <p>温馨提示：</p>
+        <p class="content"></p>
+        <img src="/images/xizhan_hy.jpg" />
+    </div>
+    <div class="result" style="display:none;">
+        <p class="num"></p>
+        <img src="/images/xizhan_dh.gif" />
+    </div>
+    @*<div class="noresult">
+            <p class="num">
+                无候车信息（终点站）
+            </p>
+            <img src="/images/xizhan_dh.gif" />
+        </div>*@
+    <div class="result_null">
+        <p class="num">
+            无法找到车次信息
+        </p>
+        <img src="/images/xizhan_hy.jpg" />
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        $.ajax({
+            url: '/TipsQuery/GetWestReminderTxt',
+            success: function (data) {
+                $('.tip > .content').html(data);
+            }
+        });
+
+        function search() {
+            $.ajax({
+                url: '/TipsQuery/QueryWestTrips',
+                data: {
+                    tripNum: $('#key').val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    $('.tip').hide();
+                    $('.result').hide();
+                    $('.noresult').hide();
+                    $('.result_null').hide();
+                    if (data.CheckInEntryStr == null) {
+                        $('.result_null').show();
+                    }
+                    else if (data.CheckInEntryStr.length == 0) {
+                        $('.noresult').show();
+                    } else {
+                        $('.result').show();
+                        $('.result > .num').html(data.CheckInEntryStr + "检票口");
+                    }
+                }
+            });
+        }
+    </script>
+}
